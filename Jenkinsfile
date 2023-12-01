@@ -25,6 +25,8 @@ pipeline {
             steps {
                 dir("back-nex-sona"){
                       sh "mvn clean install"
+                      sh "docker build -t sona-nexus-app ."
+
                   }
             }
         }
@@ -76,7 +78,13 @@ pipeline {
                 }
             }
         }
-
+         stage ("Run docker compose") {
+            steps {
+                 dir("back-nex-sona"){
+                    sh " docker compose up -d"
+                }                
+            }
+        }
         
     }
 }
