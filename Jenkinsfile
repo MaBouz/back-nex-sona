@@ -30,6 +30,14 @@ pipeline {
                   }
             }
         }
+
+        stage ("Run docker compose") {
+            steps {
+                 dir("back-nex-sona"){
+                    sh " docker compose up -d"
+                }                
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server') {
@@ -78,13 +86,7 @@ pipeline {
                 }
             }
         }
-         stage ("Run docker compose") {
-            steps {
-                 dir("back-nex-sona"){
-                    sh " docker compose up -d"
-                }                
-            }
-        }
+         
         
     }
 }
