@@ -3,7 +3,7 @@ services:
   server:
     image: sona-nexus-app 
     ports:
-      - "8080:8088"
+      - "8080:8080"
     environment:
       - spring.datasource.url=jdbc:mysql://mysqldb:3306/employeedb?useSSL=false
     networks:
